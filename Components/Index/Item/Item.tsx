@@ -1,7 +1,13 @@
-import { View, Text,StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
-import React from 'react'
-import ItemInfo from './ItemInfo';
-import { router, useRouter } from 'expo-router';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
+import React from "react";
+import ItemInfo from "./ItemInfo";
+import { router, useRouter } from "expo-router";
 
 interface IData {
   name: string;
@@ -25,38 +31,48 @@ type Location = {
   state: string;
   display_address: string[];
 };
-type Props={
-  restaurant:IData;
-
-}
-export default function Item({ restaurant }:Props) {
-
-  const router = useRouter();  // Router'ı alıyoruz
+type Props = {
+  restaurant: IData;
+};
+export default function Item({ restaurant }: Props) {
+  const router = useRouter(); // Router'ı alıyoruz
 
   const onPressed = () => {
-    // /detail sayfasına restaurant verisini gönderiyoruz
+    const closed= restaurant.is_closed?(1):(0)
     router.push({
       pathname: "/detail",
-      params: { message: "selam" }
+      params: {
+        name: restaurant.name,
+        url: restaurant.url,
+        image_url: restaurant.image_url, 
+        phone: restaurant.phone,
+        rating: restaurant.rating,
+        reviewCount: restaurant.review_count,
+        is_closed: closed,
+        price: restaurant.price,
+        address1: restaurant.location.address1,
+        address2: restaurant.location.address2,
+        address3: restaurant.location.address3,
+        city: restaurant.location.city,
+        zip_code: restaurant.location.zip_code,
+        country: restaurant.location.country,
+        state: restaurant.location.state,
+      },
     });
-  }; 
+  };
   return (
     <TouchableOpacity onPress={onPressed}>
-    <ImageBackground
-      source={{ uri: restaurant.image_url.toString() }}
-      style={styles.itemContainer}
-      imageStyle={styles.imageStyle}
-    >
-      
-
-      <ItemInfo 
-        restaurantName={restaurant.name}
-        restaurantRate={restaurant.rating}
-        restaurantReviewCount={restaurant.review_count}
-      />
-      
-      
-    </ImageBackground>
+      <ImageBackground
+        source={{ uri: restaurant.image_url.toString() }}
+        style={styles.itemContainer}
+        imageStyle={styles.imageStyle}
+      >
+        <ItemInfo
+          restaurantName={restaurant.name}
+          restaurantRate={restaurant.rating}
+          restaurantReviewCount={restaurant.review_count}
+        />
+      </ImageBackground>
     </TouchableOpacity>
   );
 }
@@ -68,7 +84,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     overflow: "hidden",
     marginRight: 12,
-    justifyContent: "flex-end", 
+    justifyContent: "flex-end",
   },
   imageStyle: {
     borderRadius: 30,

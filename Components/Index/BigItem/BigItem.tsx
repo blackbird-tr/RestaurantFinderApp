@@ -1,6 +1,7 @@
 import { View, Text,StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
 import React from 'react' 
 import BigItemInfo from './BigItemInfo';
+import { router } from 'expo-router';
 
 interface IData {
   name: string;
@@ -29,8 +30,32 @@ type Props={
 
 }
 export default function BigItem({ restaurant }:Props) {
+
+  const onPressed = () => {
+    const closed= restaurant.is_closed?(1):(0)
+    router.push({
+      pathname: "/detail",
+      params: {
+        name: restaurant.name,
+        url: restaurant.url,
+        image_url: restaurant.image_url, 
+        phone: restaurant.phone,
+        rating: restaurant.rating,
+        reviewCount: restaurant.review_count,
+        is_closed: closed,
+        price: restaurant.price,
+        address1: restaurant.location.address1,
+        address2: restaurant.location.address2,
+        address3: restaurant.location.address3,
+        city: restaurant.location.city,
+        zip_code: restaurant.location.zip_code,
+        country: restaurant.location.country,
+        state: restaurant.location.state,
+      },
+    });
+  };
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPressed}>
     <ImageBackground
       source={{ uri: restaurant.image_url.toString() }}
       style={styles.itemContainer}

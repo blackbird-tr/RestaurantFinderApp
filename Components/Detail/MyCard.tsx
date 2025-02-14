@@ -1,19 +1,34 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet, Linking } from "react-native";
 import React from "react";
 import Star from "../Index/Star";
 import { Entypo, FontAwesome5, Ionicons } from "@expo/vector-icons";
-
-export default function MyCard() {
+type Props = {
+  name: string;
+  rateCount: number;
+  star: number;
+  url: string;
+  phone: number;
+  image_url: string;
+};
+export default function MyCard({
+  name,
+  rateCount,
+  star,
+  url,
+  phone,
+  image_url,
+}: Props) {
   return (
     <View style={styles.CardView}>
       <View style={{ flexDirection: "column" }}>
         <Image
-          source={require("../../assets/images/arkalogom.png")}
+          src={image_url}
           style={{ height: 80, width: 80, borderRadius: 125 }}
         />
         <View
           style={{
-            flexDirection: "row",gap:12
+            flexDirection: "row",
+            gap: 12,
           }}
         >
           <View
@@ -27,14 +42,17 @@ export default function MyCard() {
               marginTop: 10,
               flexDirection: "row",
             }}
-          >
-            <Text  style={{ 
-              color: "rgb(213, 211, 211)",
-              fontWeight: "400",
-              fontStyle: "italic",
-            }}>asd</Text>
+          > 
+            <Text
+              style={{
+                color: "rgb(213, 211, 211)",
+                fontWeight: "400",
+                fontStyle: "italic",
+              }}
+            >
+              asd
+            </Text>
           </View>
-           
         </View>
       </View>
 
@@ -44,32 +62,36 @@ export default function MyCard() {
             fontWeight: "700",
             fontStyle: "italic",
             color: "rgba(63, 63, 63, 0.7)",
-            marginTop: 12,
+            marginTop: 15,
             marginStart: 8,
           }}
         >
-          RestaurantName
+          {name}
         </Text>
-        <View style={{ marginTop: 12, marginStart: 8, flexDirection: "row" }}>
-          <Star starNo={3} />
+        <View style={{ marginTop: 22, marginStart: 8, flexDirection: "row" }}>
+          <Star starNo={star} />
           <Text
             style={{
-              marginStart: 8,
+              marginStart: 12,
               color: "rgba(63, 63, 63, 0.7)",
               fontWeight: "400",
               fontStyle: "italic",
             }}
           >
-            (123 Rating)
+            ({rateCount}) review
           </Text>
         </View>
       </View>
-      <View style={{ flex: 1, alignItems: "flex-end" }}>
-        <TouchableOpacity style={{ alignItems: "center" }}>
-        <Entypo name="link" size={24} color="#21b55e" />
+      <View
+        style={{ flexDirection: "row", flex: 1, justifyContent:'center'  }}
+      >
+        <TouchableOpacity onPress={()=>Linking.openURL(`${url}`)} style={{ alignItems: "center", marginBottom: 20 }}>
+          <Entypo name="link" size={24} color="#21b55e" />
           <Text>Website</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{ marginRight: 14, marginTop: 20 }}>
+        <TouchableOpacity onPress={()=>Linking.openURL(`tel:${phone}`)}
+          style={{ marginRight: 14,  marginBottom: 20 ,marginLeft:18, alignItems: "center" }}
+        >
           <Ionicons name="call" size={24} color="#21b55e" />
           <Text>Call</Text>
         </TouchableOpacity>

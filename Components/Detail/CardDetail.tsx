@@ -15,19 +15,8 @@ import {
 } from "react-native";
 import { Api } from "@/api/api";
 import { Entypo, Ionicons } from "@expo/vector-icons";
-interface IData {
-  name: string;
-  image_url: string;
-  rating: number;
-  price: string;
-  is_closed: boolean;
-  phone: string;
-  review_count: number;
-  url: string;
-  location: Location;
-}
 
-type Location = {
+type Props = {
   address1: string;
   address2: string;
   address3: string;
@@ -35,16 +24,23 @@ type Location = {
   zip_code: string;
   country: string;
   state: string;
-  display_address: string[];
+  price: string;
+  is_closed: string;
 };
-type Props = {
-  data: IData[];
-};
-export default function CardDetail() {
+export default function CardDetail({
+  address1,
+  address2,
+  address3,
+  city,
+  zip_code,
+  country,
+  state,
+  price,
+  is_closed,
+}: Props) {
   const [first, setfirst] = useState(false);
   return (
-    <View style={styles.cardView}> 
-       
+    <View style={styles.cardView}>
       <View
         style={{
           flexDirection: "row",
@@ -65,16 +61,25 @@ export default function CardDetail() {
         >
           Is the restaurant open or closed? =={">"}
         </Text>
-        <TouchableOpacity onPress={()=>alert("Number of '₺' descirbe how expensive is restaurant")}> <Text style={{
-            marginStart: 12,
-            marginEnd: 22,
-            fontStyle: "italic",
-            fontWeight: "500",
-            fontSize: 22,
-            color: "#21b55e",
-          }}>₺</Text></TouchableOpacity>
-       
-         
+        <TouchableOpacity
+          onPress={() =>
+            alert("Number of '₺' descirbe how expensive is restaurant")
+          }
+        > 
+          <Text
+            style={{
+              marginStart: 5,
+              marginEnd: 22,
+              fontStyle: "italic",
+              fontWeight: "500",
+              fontSize: 22,
+              color: "#21b55e",
+            }}
+          >
+            {price || '₺'} 
+
+          </Text>
+        </TouchableOpacity>
       </View>
       <View
         style={{
@@ -97,12 +102,12 @@ export default function CardDetail() {
           Is the restaurant open or closed? =={">"}
         </Text>
 
-        {first ? (
-          <TouchableOpacity onPress={()=>alert("It's Open")}>
+        {Number(is_closed)===0 ? (
+          <TouchableOpacity onPress={() => alert("It's Open")}>
             <Ionicons name="lock-open-outline" size={24} color="#21b55e" />
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity onPress={()=>alert("It's Closed")}>
+          <TouchableOpacity onPress={() => alert("It's Closed")}>
             <Ionicons name="lock-closed-outline" size={24} color="#21b55e" />
           </TouchableOpacity>
         )}
@@ -113,7 +118,7 @@ export default function CardDetail() {
           flexDirection: "row",
           alignItems: "center",
           position: "absolute",
-          bottom: 200,
+          bottom: 180,
           left: 20,
         }}
       >
@@ -124,9 +129,23 @@ export default function CardDetail() {
             fontStyle: "italic",
             fontWeight: "500",
             color: "rgba(111, 98, 98, 0.78)",
+            flexWrap: "wrap", // Metnin taşmasını engeller ve alt satıra geçmesini sağlar
+            width: "100%", // Genişliği %100 yaparak alanı en iyi şekilde kullanmasını sağlarız
           }}
         >
-          address
+          {address1 +
+            "/" +
+            address2 +
+            "/" +
+            address3 +
+            "/" +
+            city +
+            "/" +
+            country +
+            "/" +
+            zip_code +
+            "/" +
+            state}
         </Text>
       </View>
     </View>

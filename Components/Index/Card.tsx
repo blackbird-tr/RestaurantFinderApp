@@ -26,58 +26,88 @@ import ListItems from "./Item/ListItems";
 import ListBigItems from "./BigItem/ListBigItems";
 import { Api } from "@/api/api";
 interface IData {
-    name: string;
-    image_url: string;
-    rating: number;
-    price: string;
-    is_closed: boolean;
-    phone: string;
-    review_count: number;
-    url: string;
-    location: Location;
-  }
-  
-  type Location = {
-    address1: string;
-    address2: string;
-    address3: string;
-    city: string;
-    zip_code: string;
-    country: string;
-    state: string;
-    display_address: string[];
-  };
-  type Props={
-    data:IData[];
-  }
-export default function Card({data}:Props) {
-  const [mdata, setmdata] = useState<IData[]>([])
+  name: string;
+  image_url: string;
+  rating: number;
+  price: string;
+  is_closed: boolean;
+  phone: string;
+  review_count: number;
+  url: string;
+  location: Location;
+}
+
+type Location = {
+  address1: string;
+  address2: string;
+  address3: string;
+  city: string;
+  zip_code: string;
+  country: string;
+  state: string;
+  display_address: string[];
+};
+type Props = {
+  data: IData[];
+};
+export default function Card() {
+  const [mdata, setmdata] = useState<IData[]>([]);
+  const [data, setData] = useState<IData[]>([]);
+  const [search, setSearch] = useState("");
+  const [activeButton, setActiveButton] = useState<string>("Recomend");
   useEffect(() => {
     const fetchData = async () => {
       await PopularRestaurant();
     };
     fetchData();
   }, []);
-
-  const PopularRestaurant = async () => {
-    Api({ onSet: setmdata });  // setmdata'yı doğru şekilde 'onSet' olarak geçiyoruz
+  useEffect(() => {
+    const fetchData = async () => {
+      await SearchRestaurant(search);
+    };
+    fetchData();
+  }, [search]);
+  const SearchRestaurant = async (search: string) => {
+    Api({ onSet: setData, search:search });
   };
+  const PopularRestaurant = async (search?: string) => {
+    Api({ onSet: setmdata, search: "kebap"});
+  };
+  const handlePress = (buttonName: string) => {
+    setSearch(buttonName);
+
+    if (activeButton === buttonName) {
+      setActiveButton("");
+      setSearch("");
+    } else {
+      setActiveButton(buttonName);
+    }
+  };
+
   return (
     <View style={styles.cardView}>
-       
       <View style={styles.quickbuttons}>
-        <CustomButton isActive={true} name="Recomend" />
-        <CustomButton isActive={false} name="Pizza" />
-        <CustomButton isActive={false} name="Burger" />
-        <CustomButton isActive={false} name="Sushi" />
+        <TouchableOpacity onPress={() => handlePress("Recomend")}>
+          <CustomButton
+            isActive={activeButton === "Recomend"}
+            name="Recomend"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handlePress("Pizza")}>
+          <CustomButton isActive={activeButton === "Pizza"} name="Pizza" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handlePress("Burger")}>
+          <CustomButton isActive={activeButton === "Burger"} name="Burger" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handlePress("Sushi")}>
+          <CustomButton isActive={activeButton === "Sushi"} name="Sushi" />
+        </TouchableOpacity>
       </View>
 
-       
       <View style={styles.listContainer}>
         <ListItems restaurants={data} />
       </View>
 
-       
       <Text style={styles.popularText}>Popular Restaurant</Text>
 
       <View style={styles.listContainer}>
@@ -92,27 +122,26 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     height: 450,
     width: "100%",
-    justifyContent: "flex-start",  
-    padding: 10,  
+    justifyContent: "flex-start",
+    padding: 10,
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
   },
   quickbuttons: {
     display: "flex",
     flexDirection: "row",
-    flexWrap: "wrap", 
-    marginBottom: 10,  
-    flexShrink: 1,  
+    flexWrap: "wrap",
+    marginBottom: 10,
+    flexShrink: 1,
   },
   listContainer: {
-    alignItems: "flex-start",  
-    width: "100%",  
+    alignItems: "flex-start",
+    width: "100%",
   },
-  popularText: { 
+  popularText: {
     fontWeight: "700",
     fontSize: 18,
-    margin: 10,  
-    color:' rgba(0, 0, 0, 0.62)'
+    margin: 10,
+    color: " rgba(0, 0, 0, 0.62)",
   },
 });
-

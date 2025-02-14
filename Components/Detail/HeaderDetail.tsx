@@ -1,12 +1,13 @@
 import { View, Text, TouchableOpacity,StyleSheet } from 'react-native'
 import React from 'react'
 import { Entypo, Ionicons } from '@expo/vector-icons'
+import { router } from 'expo-router';
 
 export default function HeaderDetail() {
   return (
        <View style={styles.headerView}>
             <View style={styles.backView}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=>router.back()}>
                 <Ionicons name="arrow-back" size={24} color="#706a69" />
               </TouchableOpacity>
             </View>

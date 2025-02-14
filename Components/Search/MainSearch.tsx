@@ -41,7 +41,7 @@ export default function MainSearch({onSearch}:SearchProps) {
           {
             headers: {
               Authorization:
-                "Bearer gK32NI28OjjAuN_nUZLiImZjbBJ56rzpQa65phOUISKQQfhHbuixvQ4jnUaz-jArbjsUDzEgqysDBq-tkpKlc2YbaJRVtqnoxuRG_gfXcNLiR8CoA7fMOGlAi3SrZ3Yx",
+                "Bearer 3T5A-vT7WGRXzDJK00p_rIvJmIdtM3sqxiDEx6JUXPKhHmLwlgpv2R8a7szR4z9sCRl37_oyUyzBfBhzt-GJi-F_vJh6-L4tKJeCVgVip-kYlP-UWtmW_1OrUImvZ3Yx",
             },
             params: {
               term: search,

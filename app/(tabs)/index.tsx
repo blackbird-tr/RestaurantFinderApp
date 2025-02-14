@@ -68,7 +68,7 @@ export default function Index() {
       </View>
 
       <View>
-        <Card data={Data} />
+        <Card  />
       </View>
     </View>
   );
