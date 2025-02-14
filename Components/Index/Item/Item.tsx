@@ -1,6 +1,7 @@
 import { View, Text,StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
 import React from 'react'
 import ItemInfo from './ItemInfo';
+import { router, useRouter } from 'expo-router';
 
 interface IData {
   name: string;
@@ -29,8 +30,18 @@ type Props={
 
 }
 export default function Item({ restaurant }:Props) {
+
+  const router = useRouter();  // Router'ı alıyoruz
+
+  const onPressed = () => {
+    // /detail sayfasına restaurant verisini gönderiyoruz
+    router.push({
+      pathname: "/detail",
+      params: { message: "selam" }
+    });
+  }; 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPressed}>
     <ImageBackground
       source={{ uri: restaurant.image_url.toString() }}
       style={styles.itemContainer}
