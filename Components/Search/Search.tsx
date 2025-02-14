@@ -1,4 +1,4 @@
-import SearchBar from "@/Components/SearchBar";
+ 
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {NativeSyntheticEvent, StyleSheet, Text, TextInputChangeEventData, View } from "react-native";
@@ -86,8 +86,7 @@ console.log(search)
         flex: 1, 
         alignItems: "center",
       }}
-    >
-      <SearchBar handleChange={handleChange} /> 
+    > 
     </View>
   );
 }
