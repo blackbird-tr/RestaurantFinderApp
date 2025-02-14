@@ -9,9 +9,11 @@ import {
 import React, { useState } from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 interface props {
-  setSearch: (word: string) => void;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
+
 export default function SearchBar({ setSearch }: props) {
+  
   const handleChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
     setSearch(e.nativeEvent.text);
   };

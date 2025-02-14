@@ -8,13 +8,13 @@ type Prop={
 
 export default function CustomButton({name,isActive}:Prop) {
   return (
-    <View>
-        {isActive?(<TouchableOpacity style={styles.quickActive}>
+    <View >
+        {isActive?(<View style={styles.quickActive}>
                  <Text style={styles.textActive}>{name}</Text>
-             </TouchableOpacity> ):
-        (<TouchableOpacity style={styles.quick}>
+             </View> ):
+        (<View style={styles.quick}>
             <Text style={styles.text}>{name}</Text>
-        </TouchableOpacity> )}
+        </View> )}
 
      
     </View>

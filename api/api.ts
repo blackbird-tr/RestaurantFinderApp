@@ -3,11 +3,12 @@ import axios from "axios";
 // Props tipini daha açık şekilde belirtiyoruz
 type Props = {
   onSet: (IData: IData[]) => void;
+  search?:string
 };
 
 // Api fonksiyonu: Asenkron çalışarak veriyi alıp, state güncellemeyi sağlar
-export const Api = async ({ onSet }: Props): Promise<void> => {
-  const data = await fetchData("kebap");
+export const Api = async ({ onSet,search }: Props): Promise<void> => {
+  const data = await fetchData(search||'ekler');
   onSet(data);
 };
 
@@ -42,7 +43,7 @@ const fetchData = async (search: string): Promise<IData[]> => {
     const response = await axios.get("https://api.yelp.com/v3/businesses/search", {
       headers: {
         Authorization:
-          "Bearer gK32NI28OjjAuN_nUZLiImZjbBJ56rzpQa65phOUISKQQfhHbuixvQ4jnUaz-jArbjsUDzEgqysDBq-tkpKlc2YbaJRVtqnoxuRG_gfXcNLiR8CoA7fMOGlAi3SrZ3Yx",
+          "Bearer 3T5A-vT7WGRXzDJK00p_rIvJmIdtM3sqxiDEx6JUXPKhHmLwlgpv2R8a7szR4z9sCRl37_oyUyzBfBhzt-GJi-F_vJh6-L4tKJeCVgVip-kYlP-UWtmW_1OrUImvZ3Yx",
       },
       params: {
         term: search,
