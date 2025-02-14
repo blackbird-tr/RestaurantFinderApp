@@ -39,7 +39,7 @@ type Location = {
 };
 export default function Index() {
   const [Data, setData] = useState<IData[]>([]);
-
+const [search, setSearch] = useState<string>("")
   const Search = (data: IData[]) => {
     setData(data);
   };
@@ -61,14 +61,14 @@ export default function Index() {
             </Text>
           </View>
           <View>
-            <MainSearch onSearch={Search} />
+            <MainSearch onSearch={setSearch} />
           </View>
           <FontAwesome style={styles.plus2} name="plus" size={90} />
         </View>
       </View>
 
       <View>
-        <Card  />
+        <Card mySearch={search} />
       </View>
     </View>
   );

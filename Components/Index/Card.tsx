@@ -48,9 +48,9 @@ type Location = {
   display_address: string[];
 };
 type Props = {
-  data: IData[];
+  mySearch:string;
 };
-export default function Card() {
+export default function Card({mySearch}:Props) {
   const [mdata, setmdata] = useState<IData[]>([]);
   const [data, setData] = useState<IData[]>([]);
   const [search, setSearch] = useState("");
@@ -58,16 +58,23 @@ export default function Card() {
   useEffect(() => {
     const fetchData = async () => {
       await PopularRestaurant();
+      await SearchRestaurant();
     };
     fetchData();
   }, []);
   useEffect(() => {
     const fetchData = async () => {
-      await SearchRestaurant(search);
+      if (mySearch) {
+        await SearchRestaurant(mySearch);
+      } else if (search) {
+        await SearchRestaurant(search);
+      }  
     };
+  
     fetchData();
-  }, [search]);
-  const SearchRestaurant = async (search: string) => {
+  }, [mySearch, search]);
+  
+  const SearchRestaurant = async (search?: string) => {
     Api({ onSet: setData, search:search });
   };
   const PopularRestaurant = async (search?: string) => {
