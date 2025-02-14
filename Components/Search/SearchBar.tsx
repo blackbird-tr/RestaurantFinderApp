@@ -18,7 +18,7 @@ export default function SearchBar({ setSearch }: props) {
 
   return (
     <View style={styles.mainView}>
-      <AntDesign style={{marginLeft:5}} name="search1" size={24} color="black" />
+      <AntDesign style={{marginLeft:5}} name="search1" size={24} color="#918f89" />
       <TextInput onChange={handleChange} placeholder="Search" />
     </View>
   );
@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems:'center',
-    marginStart: 40,
-    borderWidth: 1,
+    marginStart: 40, 
+    padding:7,
     borderRadius: 20,
     width: 240,
     backgroundColor: "white",

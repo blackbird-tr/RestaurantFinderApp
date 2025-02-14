@@ -1,4 +1,4 @@
-import Search from "@/Components/Search/Search";  
+import Search from "@/Components/Search/MainSearch";  
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {KeyboardAvoidingView, NativeSyntheticEvent, Platform, ScrollView, StyleSheet, Text, TextInputChangeEventData, TouchableOpacity, View } from "react-native";
@@ -11,7 +11,7 @@ import SearchBar from "@/Components/Search/SearchBar";
 export default function Header() {
   return (
      
-       <View style={{flexDirection:'row', flex:1}}>
+       <View style={{flexDirection:'row'}}>
     <TouchableOpacity style={styles.menu}>
     <SimpleLineIcons  name="menu" size={24} color="#80e08a" />
     </TouchableOpacity>

@@ -1,4 +1,3 @@
-import Search from "@/Components/Search/Search";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
@@ -12,14 +11,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { Double } from "react-native/Libraries/Types/CodegenTypes";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
-import EvilIcons from "@expo/vector-icons/EvilIcons";
-import SearchBar from "@/Components/Search/SearchBar";
 import Header from "@/Components/Index/Header";
 import Card from "@/Components/Index/Card";
+import MainSearch from "@/Components/Search/MainSearch";
 interface IData {
   name: string;
   image_url: string;
@@ -45,34 +40,37 @@ type Location = {
 export default function Index() {
   const [Data, setData] = useState<IData[]>([]);
 
-  const takeAllData = (searchResult: IData[]) => {
-    setData(searchResult);
-  };
-  const Search = (value: string) => {
-    console.log(value);
-  };
-  const FilterByResult = (price: string) => {
-    return Data.filter((result) => {
-      return result.price === price;
-    });
+  const Search = (data: IData[]) => {
+    setData(data);
   };
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"} // iOS için padding, Android için height
-      style={styles.mainView}
-    >
-      <Header />
+    <View style={styles.mainView}>
       <View>
-        <FontAwesome style={styles.plus} name="plus" size={120} />
+        <Header />
         <View>
-          <SearchBar setSearch={Search} />
+          <FontAwesome style={styles.plus} name="plus" size={90} />
+          <View style={{ marginStart: 40, marginBottom: 20 }}>
+            <Text
+              style={{ 
+                fontWeight: "400",
+                fontStyle: "italic",
+                color: "white",
+              }}
+            >
+              WHERE DO YOU WANT TO EAT TODAY ?
+            </Text>
+          </View>
+          <View>
+            <MainSearch onSearch={Search} />
+          </View>
+          <FontAwesome style={styles.plus2} name="plus" size={90} />
         </View>
-        <FontAwesome style={styles.plus2} name="plus" size={120} />
       </View>
 
-      <Card/>
-      
-    </KeyboardAvoidingView>
+      <View>
+        <Card data={Data} />
+      </View>
+    </View>
   );
 }
 const styles = StyleSheet.create({

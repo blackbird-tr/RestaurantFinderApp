@@ -1,4 +1,4 @@
-import Search from "@/Components/Search/Search";
+import Search from "@/Components/Search/MainSearch";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
@@ -20,60 +20,99 @@ import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import SearchBar from "@/Components/Search/SearchBar";
 import Header from "@/Components/Index/Header";
-export default function Card() {
+import CustomButton from "./CustomButton";
+import ItemInfo from "./Item/ItemInfo";
+import ListItems from "./Item/ListItems";
+import ListBigItems from "./BigItem/ListBigItems";
+import { Api } from "@/api/api";
+interface IData {
+    name: string;
+    image_url: string;
+    rating: number;
+    price: string;
+    is_closed: boolean;
+    phone: string;
+    review_count: number;
+    url: string;
+    location: Location;
+  }
+  
+  type Location = {
+    address1: string;
+    address2: string;
+    address3: string;
+    city: string;
+    zip_code: string;
+    country: string;
+    state: string;
+    display_address: string[];
+  };
+  type Props={
+    data:IData[];
+  }
+export default function Card({data}:Props) {
+  const [mdata, setmdata] = useState<IData[]>([])
+  useEffect(() => {
+    const fetchData = async () => {
+      await PopularRestaurant();
+    };
+    fetchData();
+  }, []);
+
+  const PopularRestaurant = async () => {
+    Api({ onSet: setmdata });  // setmdata'yı doğru şekilde 'onSet' olarak geçiyoruz
+  };
   return (
     <View style={styles.cardView}>
+       
       <View style={styles.quickbuttons}>
+        <CustomButton isActive={true} name="Recomend" />
+        <CustomButton isActive={false} name="Pizza" />
+        <CustomButton isActive={false} name="Burger" />
+        <CustomButton isActive={false} name="Sushi" />
+      </View>
 
-        <TouchableOpacity style={styles.quickActive}>
-             Recomend 
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.quick}>
-            <Text>Pizza</Text>
-        </TouchableOpacity> 
-        <TouchableOpacity style={styles.quick}>
-            <Text>Burger</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.quick}>
-            <Text>Sushi</Text>
-        </TouchableOpacity>
+       
+      <View style={styles.listContainer}>
+        <ListItems restaurants={data} />
+      </View>
 
+       
+      <Text style={styles.popularText}>Popular Restaurant</Text>
 
+      <View style={styles.listContainer}>
+        <ListBigItems restaurants={mdata} />
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-    quickbuttons:{
-        display:'flex',
-        flexDirection:'row', 
-        
-    },
-    quickActive:{
-        marginRight:12,
-        flex:1,
-        borderRadius:12, 
-        backgroundColor:'#f08811',   
-        textAlign:'center',
-        alignItems:"center"
-
-
-    }, 
-    quick:{
-        marginRight:12,
-        flex:1, 
-        textAlign:'center',
-        alignItems:"center"
-
-
-    },
   cardView: {
     backgroundColor: "white",
     height: 450,
     width: "100%",
-    justifyContent: "center",
-    borderStartStartRadius: 40,
-    borderEndStartRadius: 40,
+    justifyContent: "flex-start",  
+    padding: 10,  
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+  },
+  quickbuttons: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap", 
+    marginBottom: 10,  
+    flexShrink: 1,  
+  },
+  listContainer: {
+    alignItems: "flex-start",  
+    width: "100%",  
+  },
+  popularText: { 
+    fontWeight: "700",
+    fontSize: 18,
+    margin: 10,  
+    color:' rgba(0, 0, 0, 0.62)'
   },
 });
+

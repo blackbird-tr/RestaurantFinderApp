@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import {NativeSyntheticEvent, StyleSheet, Text, TextInputChangeEventData, View } from "react-native";
 import { Double } from "react-native/Libraries/Types/CodegenTypes";  
+import SearchBar from "./SearchBar";
 interface IData{
 name:string,
 image_url:string, 
@@ -28,7 +29,7 @@ type Location={
 type SearchProps={
     onSearch:(data:IData[])=>void;
 }
-export default function Search({onSearch}:SearchProps) {
+export default function MainSearch({onSearch}:SearchProps) {
   const [search, setSearch] = useState<string>("ekler");
   const [Data, setData] = useState<IData[]>([])
   
@@ -75,18 +76,12 @@ export default function Search({onSearch}:SearchProps) {
     }
   }, [,search]);
   
-  const handleChange=(e:NativeSyntheticEvent<TextInputChangeEventData>)=>{
-    setSearch(e.nativeEvent.text)
-}
+  
  
 console.log(search)
   return (
-    <View
-      style={{
-        flex: 1, 
-        alignItems: "center",
-      }}
-    > 
+    <View  > 
+    <SearchBar setSearch={setSearch}/>
     </View>
   );
 }
