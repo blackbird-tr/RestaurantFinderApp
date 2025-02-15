@@ -127,7 +127,7 @@ export default function Card({mySearch}:Props) {
 const styles = StyleSheet.create({
   cardView: {
     backgroundColor: "white",
-    height: 450,
+    height: 500,
     width: "100%",
     justifyContent: "flex-start",
     padding: 10,
@@ -138,7 +138,9 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    marginBottom: 10,
+    marginBottom:20,
+    marginTop: 15,
+    marginLeft: 10,
     flexShrink: 1,
   },
   listContainer: {

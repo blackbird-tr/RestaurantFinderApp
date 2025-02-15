@@ -44,6 +44,11 @@ const [search, setSearch] = useState<string>("")
     setData(data);
   };
   return (
+    <ScrollView
+  keyboardShouldPersistTaps="handled"
+  keyboardDismissMode="on-drag"
+  contentContainerStyle={{ flexGrow: 1 }}
+>
     <View style={styles.mainView}>
       <View>
         <Header />
@@ -71,6 +76,7 @@ const [search, setSearch] = useState<string>("")
         <Card mySearch={search} />
       </View>
     </View>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({
