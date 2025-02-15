@@ -1,6 +1,6 @@
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import Card from "./Card";
 
 type Props = {
@@ -12,25 +12,23 @@ export default function MyDrawer({ Isvisible, setVisible }: Props) {
   if (!Isvisible) return null;
 
   return (
-    <View style={styles.overlay}> 
+    <View style={styles.overlay}>
       <TouchableOpacity
         style={styles.backdrop}
         onPress={() => setVisible(false)}
-        activeOpacity={1}  
+        activeOpacity={1}
       />
- 
-      <View style={styles.drawer}> 
+
+      <View style={styles.drawer}>
         <TouchableOpacity
           onPress={() => setVisible(false)}
           style={styles.closeButton}
         >
-          <Ionicons name="arrow-back" size={34} color="#21b55e" />
+          <AntDesign name="close" size={34} color="#21b55e" />
         </TouchableOpacity>
       </View>
 
-        <Card/>
-
-
+      <Card />
     </View>
   );
 }

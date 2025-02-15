@@ -1,7 +1,13 @@
-import { View, Text,StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
-import React from 'react' 
-import BigItemInfo from './BigItemInfo';
-import { router } from 'expo-router';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
+import React from "react";
+import BigItemInfo from "./BigItemInfo";
+import { router } from "expo-router";
 
 interface IData {
   name: string;
@@ -25,20 +31,18 @@ type Location = {
   state: string;
   display_address: string[];
 };
-type Props={
-  restaurant:IData;
-
-}
-export default function BigItem({ restaurant }:Props) {
-
+type Props = {
+  restaurant: IData;
+};
+export default function BigItem({ restaurant }: Props) {
   const onPressed = () => {
-    const closed= restaurant.is_closed?(1):(0)
+    const closed = restaurant.is_closed ? 1 : 0;
     router.push({
       pathname: "/detail",
       params: {
         name: restaurant.name,
         url: restaurant.url,
-        image_url: restaurant.image_url, 
+        image_url: restaurant.image_url,
         phone: restaurant.phone,
         rating: restaurant.rating,
         reviewCount: restaurant.review_count,
@@ -56,21 +60,17 @@ export default function BigItem({ restaurant }:Props) {
   };
   return (
     <TouchableOpacity onPress={onPressed}>
-    <ImageBackground
-      source={{ uri: restaurant.image_url.toString() }}
-      style={styles.itemContainer}
-      imageStyle={styles.imageStyle}
-    >
-      
-
-      <BigItemInfo 
-        restaurantName={restaurant.name}
-        restaurantRate={restaurant.rating}
-        restaurantReviewCount={restaurant.review_count}
-      />
-      
-      
-    </ImageBackground>
+      <ImageBackground
+        source={{ uri: restaurant.image_url.toString() }}
+        style={styles.itemContainer}
+        imageStyle={styles.imageStyle}
+      >
+        <BigItemInfo
+          restaurantName={restaurant.name}
+          restaurantRate={restaurant.rating}
+          restaurantReviewCount={restaurant.review_count}
+        />
+      </ImageBackground>
     </TouchableOpacity>
   );
 }
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     overflow: "hidden",
     marginRight: 12,
-    justifyContent: "flex-end", 
+    justifyContent: "flex-end",
   },
   imageStyle: {
     borderRadius: 30,
