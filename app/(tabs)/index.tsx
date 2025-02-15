@@ -44,33 +44,31 @@ export default function Index() {
     setData(data);
   };
   return (
+    <ScrollView
+    keyboardShouldPersistTaps="handled"
+    keyboardDismissMode="on-drag"
+    contentContainerStyle={{ flexGrow: 1 }}
+  >
     <View style={styles.mainView}>
-      <View>
-        <Header />
-        <View>
-          <FontAwesome style={styles.plus} name="plus" size={90} />
-          <View style={{ marginStart: 40, marginBottom: 20 }}>
-            <Text
-              style={{ 
-                fontWeight: "400",
-                fontStyle: "italic",
-                color: "white",
-              }}
-            >
-              WHERE DO YOU WANT TO EAT TODAY ?
-            </Text>
-          </View>
-          <View>
-            <MainSearch onSearch={Search} />
-          </View>
-          <FontAwesome style={styles.plus2} name="plus" size={90} />
-        </View>
+      <Header />
+      <FontAwesome style={styles.plus} name="plus" size={90} />
+      <View style={{ marginStart: 40, marginBottom: 20 }}>
+        <Text
+          style={{
+            fontWeight: "400",
+            fontStyle: "italic",
+            color: "white",
+          }}
+        >
+          WHERE DO YOU WANT TO EAT TODAY ?
+        </Text>
       </View>
-
-      <View>
-        <Card data={Data} />
-      </View>
+      <MainSearch onSearch={Search} />
+      <FontAwesome style={styles.plus2} name="plus" size={90} />
+      <Card data={Data} />
     </View>
+  </ScrollView>
+  
   );
 }
 const styles = StyleSheet.create({
