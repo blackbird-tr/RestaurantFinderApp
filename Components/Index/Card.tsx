@@ -78,7 +78,7 @@ export default function Card({data}:Props) {
       </View>
 
        
-      <Text style={styles.popularText}>Popular Restaurant</Text>
+      <Text style={styles.popularText}>Popular Restaurants</Text>
 
       <View style={styles.listContainer}>
         <ListBigItems restaurants={mdata} />
@@ -90,7 +90,7 @@ export default function Card({data}:Props) {
 const styles = StyleSheet.create({
   cardView: {
     backgroundColor: "white",
-    height: 450,
+    height: 500,
     width: "100%",
     justifyContent: "flex-start",  
     padding: 10,  
@@ -101,7 +101,10 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap", 
-    marginBottom: 10,  
+    marginLeft: 10, 
+    
+    marginTop: 12, 
+    marginBottom: 20,  
     flexShrink: 1,  
   },
   listContainer: {
