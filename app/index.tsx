@@ -15,6 +15,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Header from "@/Components/Index/Header";
 import Card from "@/Components/Index/Card";
 import MainSearch from "@/Components/Search/MainSearch";
+import MyDrawer from "@/Components/Index/Drawer/MyDrawer";
 interface IData {
   name: string;
   image_url: string;
@@ -39,19 +40,23 @@ type Location = {
 };
 export default function Index() {
   const [Data, setData] = useState<IData[]>([]);
+  const [visible, setVisible] = useState<boolean>(false)
 const [search, setSearch] = useState<string>("")
+console.log(visible)
   const Search = (data: IData[]) => {
     setData(data);
   };
   return (
+    <>
     <ScrollView
   keyboardShouldPersistTaps="handled"
   keyboardDismissMode="on-drag"
   contentContainerStyle={{ flexGrow: 1 }}
->
+> 
     <View style={styles.mainView}>
+    
       <View>
-        <Header />
+        <Header isVisible={setVisible}/>
         <View>
           <FontAwesome style={styles.plus} name="plus" size={90} />
           <View style={{ marginStart: 40, marginBottom: 20 }}>
@@ -77,6 +82,9 @@ const [search, setSearch] = useState<string>("")
       </View>
     </View>
     </ScrollView>
+    
+<MyDrawer Isvisible={visible} setVisible={setVisible}/>
+</>
   );
 }
 const styles = StyleSheet.create({

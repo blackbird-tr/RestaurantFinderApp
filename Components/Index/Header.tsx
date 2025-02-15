@@ -8,11 +8,15 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import SearchBar from "@/Components/Search/SearchBar"; 
-export default function Header() {
+type Props={
+isVisible :(bool:boolean)=>void;
+}
+
+export default function Header({isVisible}:Props) {
   return (
      
        <View style={{flexDirection:'row'}}>
-    <TouchableOpacity style={styles.menu}>
+    <TouchableOpacity onPress={()=>isVisible(true)} style={styles.menu}>
     <SimpleLineIcons  name="menu" size={24} color="#80e08a" />
     </TouchableOpacity>
     
@@ -33,6 +37,7 @@ const styles=StyleSheet.create({
     marginTop:50,
     marginLeft:20,
     flex:4,
+    zIndex:10
   },
   ring:{ 
     marginTop:50, 
