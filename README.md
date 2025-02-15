@@ -60,13 +60,13 @@ Here is a comparison of the old and new UI layouts:
   <tr>
     <td style="vertical-align: top;">
       <strong>Old Design:</strong><br>
-      <img src="../" alt="Eski Tasarım 1" width="300"><br>
-      <img src="https://s3-media4.fl.yelpcdn.com/bphoto/s2wGHw98Ny-gWWNefkT-7w/o.jpg" alt="Eski Tasarım 2" width="300">
+      <img src="https://github.com/blackbird-tr/RestaurantFinderApp/blob/main/assets/images/restold.png" alt="Eski Tasarım 1" width="300"><br>
+      <img src="https://github.com/blackbird-tr/RestaurantFinderApp/blob/main/assets/images/restOld2.png" alt="Eski Tasarım 2" width="300">
     </td>
     <td style="vertical-align: top;">
       <strong>New Design:</strong><br>
-      <img src="https://s3-media4.fl.yelpcdn.com/bphoto/s2wGHw98Ny-gWWNefkT-7w/o.jpg" alt="Yeni Tasarım 1" width="300"><br>
-      <img src="https://s3-media4.fl.yelpcdn.com/bphoto/s2wGHw98Ny-gWWNefkT-7w/o.jpg" alt="Yeni Tasarım 2" width="300">
+      <img src="https://github.com/blackbird-tr/RestaurantFinderApp/blob/main/assets/images/restNew.jpeg" alt="Yeni Tasarım 1" width="300"><br>
+      <img src="https://github.com/blackbird-tr/RestaurantFinderApp/blob/main/assets/images/restNew2.jpeg" alt="Yeni Tasarım 2" width="300">
     </td>
   </tr>
 </table>
