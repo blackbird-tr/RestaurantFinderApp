@@ -16,7 +16,7 @@ This is a React Native application designed to help you achieve greatness. Wheth
 
 🌈 Custom themes and animations
 
-🔐 Secure authentication and data handling
+🔐 Secure data handling
 
 🛠️ Easy to extend and maintain
 
@@ -24,10 +24,10 @@ This is a React Native application designed to help you achieve greatness. Wheth
 
 *   React Native - The framework that brings mobile development to the next level.
 *   TypeScript - The language of champions.
-*   Redux - State management made easy.
 *   Axios - For all your HTTP request needs.
-*   React Navigation - Seamless navigation experience.
 *   Styled Components - Elegant and dynamic styling.
+*   React Router - Seamless navigation for your React applications.
+*   Yelp API - Access business reviews and ratings effortlessly.
 
 ## ⚡️ Getting Started
 
